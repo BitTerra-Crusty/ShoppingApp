@@ -1,0 +1,8 @@
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShppingApp_Domain\bin\Debug\netstandard2.0\ShppingApp_Domain.deps.json
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShppingApp_Domain\bin\Debug\netstandard2.0\ShppingApp_Domain.dll
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShppingApp_Domain\bin\Debug\netstandard2.0\ShppingApp_Domain.pdb
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShppingApp_Domain\obj\Debug\netstandard2.0\ShppingApp_Domain.AssemblyInfoInputs.cache
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShppingApp_Domain\obj\Debug\netstandard2.0\ShppingApp_Domain.AssemblyInfo.cs
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShppingApp_Domain\obj\Debug\netstandard2.0\ShppingApp_Domain.csproj.CoreCompileInputs.cache
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShppingApp_Domain\obj\Debug\netstandard2.0\ShppingApp_Domain.dll
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShppingApp_Domain\obj\Debug\netstandard2.0\ShppingApp_Domain.pdb

@@ -1,0 +1,65 @@
+﻿@using ShoppingApp.Services
+@using ShoppingApp.Pages
+@inject CartServices CartService
+@inject CategoryServices CategoryService
+
+<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href=""> <img src="/images/icon.png" height="40" alt="logo" /> ShopFood</a>
+    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <ul class="nav flex-column">
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="Category" @onclick="ToggleCategories" Match="NavLinkMatch.All">
+                <span class="oi oi-expand-down" aria-hidden="true"></span> Categories
+            </NavLink>
+            <div class="@categoryViewClass" id="collapseCategories">
+                <div class="nav-item px-3">
+                    @if (CategoryService.Categories == null)
+                    {
+                        <h3 class="text-center text-secondary">No Categories Avaible at the moment</h3>
+                    }
+                    else
+                    {
+                        foreach (var category in CategoryService.Categories)
+                        {
+                            <small>
+                                <a class="nav-link" href="/Product/@category.categoryId" Match="NavLinkMatch.All">
+                                    <span class="oi oi-arrow-right" aria-hidden="true"></span> @category.Name
+                                </a>
+                            </small>
+                        }
+                    }
+
+                </div>
+            </div>
+
+        </li>
+
+    </ul>
+</div>
+@code {
+    private bool collapseNavMenu = true;
+    private bool collapseCategories = false;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private string categoryViewClass => collapseCategories ? "collapse" : "noCollapse";
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+    private void ToggleCategories()
+    {
+        collapseCategories = !collapseCategories;
+    }
+
+}

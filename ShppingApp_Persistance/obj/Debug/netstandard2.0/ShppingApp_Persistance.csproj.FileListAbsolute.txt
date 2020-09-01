@@ -1,0 +1,9 @@
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShppingApp_Persistance\bin\Debug\netstandard2.0\ShppingApp_Persistance.deps.json
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShppingApp_Persistance\bin\Debug\netstandard2.0\ShppingApp_Persistance.dll
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShppingApp_Persistance\bin\Debug\netstandard2.0\ShppingApp_Persistance.pdb
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShppingApp_Persistance\obj\Debug\netstandard2.0\ShppingApp_Persistance.csprojAssemblyReference.cache
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShppingApp_Persistance\obj\Debug\netstandard2.0\ShppingApp_Persistance.AssemblyInfoInputs.cache
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShppingApp_Persistance\obj\Debug\netstandard2.0\ShppingApp_Persistance.AssemblyInfo.cs
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShppingApp_Persistance\obj\Debug\netstandard2.0\ShppingApp_Persistance.csproj.CoreCompileInputs.cache
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShppingApp_Persistance\obj\Debug\netstandard2.0\ShppingApp_Persistance.dll
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShppingApp_Persistance\obj\Debug\netstandard2.0\ShppingApp_Persistance.pdb

@@ -1,0 +1,40 @@
+﻿@page "/Category"
+@using ShoppingApp.Services
+
+@inject CategoryServices CategoryService
+
+@if (CategoryService.GetCategories() == null)
+{
+    <h3>Nothing in categories</h3>
+}
+else
+{
+<header class="text-center btn-success">
+    <h3 class="font-weight-bold text-secondary text-uppercase">Shop for any type of food you like</h3>
+    <h5 class="text-secondary">Select for a Category</h5>
+</header>
+
+    <div class="categories">
+        <div class="row">
+            @foreach (var category in CategoryService.GetCategories())
+            {
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-header text-center text-uppercase font-weight-bolder">
+                            @category.Name
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center">
+                                <img src='@category.ImagePath' title='@category.Name' class="card-img" alt='@category.Name' />
+                            </div>
+                            <div class="text-center">@category.Description</div>
+                        </div>
+                        <div class="card-footer text-center desc-view-btn">
+                            <a class="btn btn-success" href="/Product/@category.categoryId">View</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
