@@ -1,0 +1,38 @@
+﻿@page "/ThankYou/{categoryId}"
+
+@using ShoppingApp.Services
+
+@inject ProductServices ProductService
+@inject CartServices CartService
+
+@if (int.Parse(categoryId) == 0)
+{
+    CartService.Carts.Clear();
+}
+
+
+<div class="container">
+
+    <nav class="user-nav border-success text-secondary sticky-top">
+        <ul class="col-sm-12">
+            <li class="float-left">
+                <NavLink class="nav-link" href="Cart" Match="NavLinkMatch.All">
+                    <span class="oi oi-cart text-success" aria-hidden="true"></span> <span class="text-secondary">My cart&nbsp;&nbsp;</span>  <span class="badge-outline-success">    @CartService.Carts.Count()</span>
+                </NavLink>
+            </li>
+            <li class="float-right">
+                <NavLink class="nav-link" href="#" Match="NavLinkMatch.All">
+                    <span class="oi oi-person text-success" aria-hidden="true"></span> <span class="text-secondary">User</span>
+                </NavLink>
+            </li>
+        </ul>
+    </nav>
+
+    <h1 class="text-center text-success">Thank you for shopping with us, Please come again</h1>
+</div>
+
+@code
+{
+    [Parameter]
+    public string categoryId { get; set; }
+}

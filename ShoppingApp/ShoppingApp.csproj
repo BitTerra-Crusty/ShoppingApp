@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ShppingApp_Domain\ShoppingApp_Domain.csproj" />
+    <ProjectReference Include="..\ShoppingApp_Domain\ShoppingApp_Domain.csproj" />
   </ItemGroup>
 
 </Project>

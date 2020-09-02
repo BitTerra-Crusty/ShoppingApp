@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingApp", "ShoppingApp\ShoppingApp.csproj", "{7091DF79-5019-4063-AF83-3545263B1830}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingApp_Domain", "ShppingApp_Domain\ShoppingApp_Domain.csproj", "{D073328B-C4CE-4DF4-AA9F-039837935BF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingApp_Domain", "ShoppingApp_Domain\ShoppingApp_Domain.csproj", "{24342CBB-303B-48BB-A795-EE1CC39AA4BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{7091DF79-5019-4063-AF83-3545263B1830}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7091DF79-5019-4063-AF83-3545263B1830}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7091DF79-5019-4063-AF83-3545263B1830}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D073328B-C4CE-4DF4-AA9F-039837935BF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D073328B-C4CE-4DF4-AA9F-039837935BF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D073328B-C4CE-4DF4-AA9F-039837935BF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D073328B-C4CE-4DF4-AA9F-039837935BF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24342CBB-303B-48BB-A795-EE1CC39AA4BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24342CBB-303B-48BB-A795-EE1CC39AA4BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24342CBB-303B-48BB-A795-EE1CC39AA4BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24342CBB-303B-48BB-A795-EE1CC39AA4BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

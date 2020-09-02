@@ -4,32 +4,10 @@
 @inject ProductServices ProductService
 @inject CartServices CartService
 
-
-    @try
-    {
-        @if (int.Parse(categoryId) == 0)
-        {
-        <h4 class="text-center text-success">Thank you for shopping with us...</h4>
-            CartService.Carts.Clear();
-
-            categoryId = "-1";
-        }
-
-    }catch(Exception)
-    {
-        categoryId = "-1";
-    }
 @{ 
     var products = ProductService.Products;
-    if (int.Parse(categoryId) == 0 || int.Parse(categoryId) == -1)
-    {
-        products = ProductService.Products;
-    }
-    else
-    {
-        products = products.Where(p => p.CategoryId == int.Parse(categoryId)).ToList();
-    }
 
+    products = products.Where(p => p.CategoryId == int.Parse(categoryId)).ToList();
 }
 
 <nav class="user-nav border-success text-secondary sticky-top">
