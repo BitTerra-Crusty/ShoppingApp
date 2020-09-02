@@ -1,0 +1,12 @@
+# Ignore built folder
+*.vs
+
+# Ignore bin folder
+
+ShoppingApp/bin
+Shopping_Domain/bin
+
+# Ignore obj folder
+
+ShoppingApp/obj
+Shopping_Domain/obj

@@ -1,4 +1,4 @@
-﻿using ShppingApp_Domain.Entities;
+﻿using ShoppingApp_Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
