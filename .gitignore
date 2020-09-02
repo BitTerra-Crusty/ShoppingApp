@@ -1,6 +1,3 @@
-# Ignore built folder
-*.vs
-
 # Ignore bin folder
 
 ShoppingApp/bin
