@@ -1,0 +1,17 @@
+# Ignore built files
+.built
+
+# Ignore built folder
+build
+
+# Ignore debug files
+.debug 
+
+# Ignore debug folder
+debug 
+
+# Ignore objfolder
+obj
+
+# Ignore binfolder
+bin
