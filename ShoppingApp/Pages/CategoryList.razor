@@ -1,40 +1,94 @@
 ﻿@page "/Category"
 @using ShoppingApp.Services
 
+@inject ProductServices ProductService
+@inject CartServices CartService
 @inject CategoryServices CategoryService
 
-@if (CategoryService.GetCategories() == null)
-{
-    <h3>Nothing in categories</h3>
-}
-else
-{
-<header class="text-center btn-success">
-    <h3 class="font-weight-bold text-secondary text-uppercase">Shop for any type of food you like</h3>
-    <h5 class="text-secondary">Select for a Category</h5>
-</header>
+<header class="">
+    <div class="logo navbar-brand">
+        <a href=""> <img src="/images/icon.png" height="30" alt="logo" /> ShopFood</a>
+    </div>
 
-    <div class="categories">
-        <div class="row">
-            @foreach (var category in CategoryService.GetCategories())
-            {
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-header text-center text-uppercase font-weight-bolder">
-                            @category.Name
-                        </div>
-                        <div class="card-body">
-                            <div class="text-center">
-                                <img src='@category.ImagePath' title='@category.Name' class="card-img" alt='@category.Name' />
-                            </div>
-                            <div class="text-center">@category.Description</div>
-                        </div>
-                        <div class="card-footer text-center desc-view-btn">
-                            <a class="btn btn-success" href="/Product/@category.categoryId">View</a>
+    <nav class="@NavMenuCssClass">
+        <div>
+            <ul class="col-sm-12">
+                <li>
+                    <a class="nav-link" href="Category" Match="NavLinkMatch.All">
+                        <span aria-hidden="true" class="text-secondary"></span> Categories
+                    </a>
+                </li>
+
+                <li>
+                    <a class="nav-link" href="Cart" Match="NavLinkMatch.All">
+                        <span class="oi oi-cart" aria-hidden="true"></span>&nbsp;&nbsp; <span class="badge-outline-success">  @CartService.Carts.Count()</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#" Match="NavLinkMatch.All">
+                        <span class="oi oi-person" aria-hidden="true"></span>&nbsp;&nbsp;User
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+    <div class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="oi oi-menu"></span>
+    </div>
+</header>
+@code {
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "active" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+}
+
+@*End of nav*@
+<div class="main container">
+    <div class="content px-4">
+
+        <div class="main">
+            <div class="content px-4">
+
+                @if (CategoryService.GetCategories() == null)
+                {
+                    <div class="row">
+                        <h3 class="text-secondary text-center">Nothing in categories</h3>
+                    </div>
+                }
+                else
+                {
+                    <div class="categories">
+                        <div class="row">
+                            @foreach (var category in CategoryService.GetCategories())
+                            {
+                                <div class="col-sm-4">
+                                    <div class="card">
+                                        <div class="card-header text-center text-uppercase font-weight-bolder">
+                                            @category.Name
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="text-center">
+                                                <img src='@category.ImagePath' title='@category.Name' class="card-img" alt='@category.Name' />
+                                            </div>
+                                            <div class="text-center">@category.Description</div>
+                                        </div>
+                                        <div class="card-footer text-center desc-view-btn">
+                                            <a class="btn btn-success" href="/Product/@category.categoryId">View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                         </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
         </div>
     </div>
-}
+</div>

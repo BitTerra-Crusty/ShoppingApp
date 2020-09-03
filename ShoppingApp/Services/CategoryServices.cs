@@ -21,9 +21,9 @@ namespace ShoppingApp.Services
             Category category1 = new Category()
             {
                 categoryId = 4,
-                Description = "Oils are high in calories, but they are also an important source of nutrients like vitamin E. For adults age 51" +
+                Description = "Oils are high in calories, but are also an important source of nutrients like vitamin E. For adults age 51" +
                 " and older, the daily allowance for women is 5 teaspoons of oil and, for men, 6 teaspoons.If possible, " +
-                " use oils instead of solid fats, like butter, when cooking.",
+                " use oils instead of solid fats.",
                 Name = "OILS",
                 ImagePath = "/images/categories/oils.png"
             };

@@ -6,71 +6,122 @@
 @inject CartServices CartService
 @inject CategoryServices CategoryService
 
-<h3 class="text-center">Cart List</h3>
+<header class="">
+    <div class="logo navbar-brand">
+        <a href=""> <img src="/images/icon.png" height="30" alt="logo" /> ShopFood</a>
+    </div>
 
+    <nav class="@NavMenuCssClass">
+        <div>
+            <ul class="col-sm-12">
+                <li>
+                    <a class="nav-link" href="Category" Match="NavLinkMatch.All">
+                        <span aria-hidden="true" class="text-secondary"></span> Categories
+                    </a>
+                </li>
 
-@if (CartService.Carts == null || CartService.Carts.Count() < 1)
-{
-    <h3 class="text-center text-secondary">Nothing in the cart</h3>
+                <li>
+                    <a class="nav-link" href="Cart" Match="NavLinkMatch.All">
+                        <span class="oi oi-cart" aria-hidden="true"></span>&nbsp;&nbsp; <span class="badge-outline-success">  @CartService.Carts.Count()</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#" Match="NavLinkMatch.All">
+                        <span class="oi oi-person" aria-hidden="true"></span>&nbsp;&nbsp;User
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+    <div class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="oi oi-menu"></span>
+    </div>
+</header>
+@code {
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "active" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
 }
-else
 
-{
-    <table class="table table-responsive">
-        <thead>
-            <tr>
-                <th scope="col">Photo</th>
-                <th scope="col">Product Name</th>
-                <th scope="col">Category</th>
-                <th scope="col">Price</th>
-                <th scope="col">Sub Total Price</th>
-                <th scope="col" class="text-center">Quantity</th>
-            </tr>
-        </thead>
-        @{ double total = 0;}
-        @foreach (var cart in CartService.Carts)
-        {
-            <tbody>
-                <tr>
-                    @{
-                        var cartProduct = ProductService.Products.FirstOrDefault(pp => pp.ProductId == cart.ProductId);
-                    }
-                    <th scope="row"><img height="30" src="@cartProduct.PhotoPath" alt="Product image" /></th>
+@*End of nav*@
 
-                    <td> @cartProduct.Name </td>
-                    <td>@CategoryService.GetCategories().FirstOrDefault(c => c.categoryId == cartProduct.CategoryId).Name</td>
-                    <td>R @(Math.Round(cartProduct.Price,2))</td>
-                    <td>R @(Math.Round(cartProduct.Price * cart.Quantity, 2))</td>
-                    <td>
-                        <div class="input-group">
-                            <button class="btn btn-success rem-Product" @onclick="(() => CartService.DecreaseProductQuantity(cartProduct.ProductId,1,1))"><b>-</b></button>
-                            <input type="text" readonly class="text-center form-control" value="@cart.Quantity in a Cart" />
-                            <button class="btn btn-success add-Product" @onclick="(() => CartService.IncreaseProductQuantity(cartProduct.ProductId,1,1))"><b>+</b></button>
-                        </div>
-                    </td>
+<div class="main container">
+    <div class="content px-4">
+        <div class="">
+            <div class="col-sm-12">
+                <h3 class="text-center">Cart List</h3>
 
-                    @{
-                        total = total + (cartProduct.Price * cart.Quantity);
-                    }
-                </tr>
+                @if (CartService.Carts == null || CartService.Carts.Count() < 1)
+                {
+                    <h3 class="text-center text-secondary">Nothing in the cart</h3>
+                }
+                else
 
+                {
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th scope="col">Photo</th>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Sub Total Price</th>
+                                <th scope="col" class="text-center">Quantity</th>
+                            </tr>
+                        </thead>
+                        @{ double total = 0;}
+                        @foreach (var cart in CartService.Carts)
+                        {
+                            <tbody>
+                                <tr>
+                                    @{
+                                        var cartProduct = ProductService.Products.FirstOrDefault(pp => pp.ProductId == cart.ProductId);
+                                    }
+                                    <th scope="row"><img height="30" src="@cartProduct.PhotoPath" alt="Product image" /></th>
 
-            </tbody>
-        }
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Total: R @(Math.Round(total,2))</td>
-        </tr>
-    </table>
-}
-@{
-    string check = "0";
-}
-@if (CartService.Carts.Count() > 0)
-{
-<a href="/Thankyou/@check" class="btn btn-lg btn-outline-success float-right">Check Out</a>
-}
+                                    <td> @cartProduct.Name </td>
+                                    <td>@CategoryService.GetCategories().FirstOrDefault(c => c.categoryId == cartProduct.CategoryId).Name</td>
+                                    <td>R @(Math.Round(cartProduct.Price,2))</td>
+                                    <td>R @(Math.Round(cartProduct.Price * cart.Quantity, 2))</td>
+                                    <td>
+                                        <div class="input-group">
+                                            <button class="btn btn-success rem-Product" @onclick="(() => CartService.DecreaseProductQuantity(cartProduct.ProductId,1,1))"><b>-</b></button>
+                                            <input type="text" readonly class="text-center form-control" value="@cart.Quantity in a Cart" />
+                                            <button class="btn btn-success add-Product" @onclick="(() => CartService.IncreaseProductQuantity(cartProduct.ProductId,1,1))"><b>+</b></button>
+                                        </div>
+                                    </td>
+
+                                    @{
+                                        total = total + (cartProduct.Price * cart.Quantity);
+                                    }
+                                </tr>
+                            </tbody>
+                        }
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Total: R @(Math.Round(total,2))</td>
+                        </tr>
+                    </table>
+                }
+                @{
+                    string check = "0";
+                }
+                @if (CartService.Carts.Count() > 0)
+                {
+                    <a href="/Thankyou/@check" class="btn btn-lg btn-outline-success float-right">Check Out</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
