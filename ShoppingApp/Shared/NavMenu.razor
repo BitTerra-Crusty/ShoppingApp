@@ -19,7 +19,7 @@
 
                 <li>
                     <a class="nav-link" href="Cart" Match="NavLinkMatch.All">
-                        <span class="oi oi-cart" aria-hidden="true"></span>&nbsp;&nbsp; <span class="badge-outline-success">  @CartService.Carts.Count()</span>
+                        <span class="oi oi-cart" aria-hidden="true"></span>&nbsp;&nbsp; <span class="badge-outline-success">  @cartCount</span>
                     </a>
                 </li>
                 <li>
@@ -32,7 +32,7 @@
         </div>
     </nav>
     <div class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="oi oi-home"></span>
+        <span class="oi oi-menu"></span>
     </div>
 </header>
     @code {
@@ -44,5 +44,8 @@
         {
             collapseNavMenu = !collapseNavMenu;
         }
+
+        [Parameter]
+        public int cartCount { get; set; }
 
     }

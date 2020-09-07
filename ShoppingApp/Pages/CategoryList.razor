@@ -5,49 +5,7 @@
 @inject CartServices CartService
 @inject CategoryServices CategoryService
 
-<header class="">
-    <div class="logo navbar-brand">
-        <a href=""> <img src="/images/icon.png" height="30" alt="logo" /> ShopFood</a>
-    </div>
-
-    <nav class="@NavMenuCssClass">
-        <div>
-            <ul class="col-sm-12">
-                <li>
-                    <a class="nav-link" href="Category" Match="NavLinkMatch.All">
-                        <span aria-hidden="true" class="text-secondary"></span> Categories
-                    </a>
-                </li>
-
-                <li>
-                    <a class="nav-link" href="Cart" Match="NavLinkMatch.All">
-                        <span class="oi oi-cart" aria-hidden="true"></span>&nbsp;&nbsp; <span class="badge-outline-success">  @CartService.Carts.Count()</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="nav-link" href="#" Match="NavLinkMatch.All">
-                        <span class="oi oi-person" aria-hidden="true"></span>&nbsp;&nbsp;User
-                    </a>
-                </li>
-
-            </ul>
-        </div>
-    </nav>
-    <div class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="oi oi-menu"></span>
-    </div>
-</header>
-@code {
-    private bool collapseNavMenu = true;
-
-    private string NavMenuCssClass => collapseNavMenu ? "active" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-
-}
+<NavMenu cartCount="@CartService.Carts.Count()"></NavMenu>
 
 @*End of nav*@
 <div class="main container">
