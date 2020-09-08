@@ -5,13 +5,14 @@
 @inject ProductServices ProductService
 @inject CartServices CartService
 
-<NavMenu cartCount="@CartService.Carts.Count()"></NavMenu>
 @*End of nav*@
 
 @if (int.Parse(categoryId) == 0)
 {
-    CartService.Carts.Clear();
+    CartService.CustomerProducts.Clear();
 }
+
+<NavMenu cartCount="@CartService.CustomerProducts.Count()"></NavMenu>
 
 <div class="main container">
     <div class="content px-4">

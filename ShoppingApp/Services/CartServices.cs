@@ -9,33 +9,34 @@ namespace ShoppingApp.Services
     public class CartServices
     {
         public List<Cart> Carts = new List<Cart>();
+        public List<CustomerProduct> CustomerProducts = new List<CustomerProduct>();
 
         public void CreateCart(int productId, int customerId, int quantity)
         {
-            Cart cart = new Cart()
+            CustomerProduct customerProducts = new CustomerProduct()
             {
-                CartId = Carts.Count() + 1,
+                CustomerProductId = CustomerProducts.Count() + 1,
                 CustumerId = customerId,
                 ProductId = productId,
                 Quantity = quantity
 
             };
 
-            Carts.Add(cart);
+            CustomerProducts.Add(customerProducts);
         }
         public void IncreaseProductQuantity(int productId, int customerId, int quatity)
         {
-            Carts.FirstOrDefault(c => c.ProductId == productId).Quantity = Carts.FirstOrDefault(c => c.ProductId == productId).Quantity + 1;
+            CustomerProducts.FirstOrDefault(c => c.ProductId == productId).Quantity = CustomerProducts.FirstOrDefault(c => c.ProductId == productId).Quantity + 1;
         }
         public void DecreaseProductQuantity(int productId, int customerId, int quatity)
         {
-            if (Carts.FirstOrDefault(c => c.ProductId == productId).Quantity - 1 == 0)
+            if (CustomerProducts.FirstOrDefault(c => c.ProductId == productId).Quantity - 1 == 0)
             {
-                Carts.Remove(Carts.FirstOrDefault(c => c.ProductId == productId));
+                CustomerProducts.Remove(CustomerProducts.FirstOrDefault(c => c.ProductId == productId));
             }
             else
             {
-                Carts.FirstOrDefault(c => c.ProductId == productId).Quantity = Carts.FirstOrDefault(c => c.ProductId == productId).Quantity - 1;
+                CustomerProducts.FirstOrDefault(c => c.ProductId == productId).Quantity = CustomerProducts.FirstOrDefault(c => c.ProductId == productId).Quantity - 1;
             }
         }
         public List<Cart> GetCarts()

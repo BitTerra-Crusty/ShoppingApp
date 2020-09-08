@@ -7,9 +7,6 @@ namespace ShoppingApp_Domain.Entities
     public class Cart
     {
         public int CartId { get; set; }
-        public int CustumerId { get; set; }
-        public int ProductId { get; set; }
-        public int Quantity { get; set; }
-        public double TotalPrice { get; set; }
+        public List<CustomerProduct> CustomerProducts { get; set; }
     }
 }

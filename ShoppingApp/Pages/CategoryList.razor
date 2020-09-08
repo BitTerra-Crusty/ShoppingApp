@@ -5,7 +5,7 @@
 @inject CartServices CartService
 @inject CategoryServices CategoryService
 
-<NavMenu cartCount="@CartService.Carts.Count()"></NavMenu>
+<NavMenu cartCount="@CartService.CustomerProducts.Count()"></NavMenu>
 
 @*End of nav*@
 <div class="main container">
