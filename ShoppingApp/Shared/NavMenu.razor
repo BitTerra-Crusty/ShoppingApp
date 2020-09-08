@@ -3,63 +3,49 @@
 @inject CartServices CartService
 @inject CategoryServices CategoryService
 
-<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href=""> <img src="/images/icon.png" height="40" alt="logo" /> ShopFood</a>
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</div>
+<header class="">
+    <div class="logo navbar-brand">
+        <a href=""> <img src="/images/icon.png" height="30" alt="logo" /> ShopFood</a>
+    </div>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="Category" @onclick="ToggleCategories" Match="NavLinkMatch.All">
-                <span class="oi oi-expand-down" aria-hidden="true"></span> Categories
-            </NavLink>
-            <div class="@categoryViewClass" id="collapseCategories">
-                <div class="nav-item px-3">
-                    @if (CategoryService.Categories == null)
-                    {
-                        <h3 class="text-center text-secondary">No Categories Avaible at the moment</h3>
-                    }
-                    else
-                    {
-                        foreach (var category in CategoryService.Categories)
-                        {
-                            <small>
-                                <a class="nav-link" href="/Product/@category.categoryId" Match="NavLinkMatch.All">
-                                    <span class="oi oi-arrow-right" aria-hidden="true"></span> @category.Name
-                                </a>
-                            </small>
-                        }
-                    }
+    <nav class="@NavMenuCssClass">
+        <div>
+            <ul class="col-sm-12">
+                <li>
+                    <a class="nav-link" href="Category" Match="NavLinkMatch.All">
+                        <span aria-hidden="true" class="text-secondary"></span> Categories
+                    </a>
+                </li>
 
-                </div>
-            </div>
+                <li>
+                    <a class="nav-link" href="Cart" Match="NavLinkMatch.All">
+                        <span class="oi oi-cart" aria-hidden="true"></span>&nbsp;&nbsp; <span class="badge-outline-success">  @cartCount</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#" Match="NavLinkMatch.All">
+                        <span class="oi oi-person" aria-hidden="true"></span>&nbsp;&nbsp;User
+                    </a>
+                </li>
 
-        </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="oi oi-menu"></span>
+    </div>
+</header>
+    @code {
+        private bool collapseNavMenu = true;
 
-    </ul>
-</div>
-@code {
-    private bool collapseNavMenu = true;
-    private bool collapseCategories = false;
+        private string NavMenuCssClass => collapseNavMenu ? "active" : null;
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-    private string categoryViewClass => collapseCategories ? "collapse" : "noCollapse";
+        private void ToggleNavMenu()
+        {
+            collapseNavMenu = !collapseNavMenu;
+        }
 
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
+        [Parameter]
+        public int cartCount { get; set; }
+
     }
-    private void ToggleCategories()
-    {
-        collapseCategories = !collapseCategories;
-    }
-
-}

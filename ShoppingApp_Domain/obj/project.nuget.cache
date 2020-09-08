@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "QlkQZ0YQehXsXuy6EZOuV8xkb4COodLDa2zeLvyRBiSF67K7T6PGzHe/KRBQZscWIxDMq3tzt0qB1UA87okhUA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\v-amosamos\\source\\repos\\ShoppingApp\\ShoppingApp_Domain\\ShoppingApp_Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\v-amosamos\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\v-amosamos\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,9 @@
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShoppingApp_Domain\bin\Debug\netstandard2.0\ShoppingApp_Domain.deps.json
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShoppingApp_Domain\bin\Debug\netstandard2.0\ShoppingApp_Domain.dll
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShoppingApp_Domain\bin\Debug\netstandard2.0\ShoppingApp_Domain.pdb
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShoppingApp_Domain\obj\Debug\netstandard2.0\ShoppingApp_Domain.csprojAssemblyReference.cache
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShoppingApp_Domain\obj\Debug\netstandard2.0\ShoppingApp_Domain.AssemblyInfoInputs.cache
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShoppingApp_Domain\obj\Debug\netstandard2.0\ShoppingApp_Domain.AssemblyInfo.cs
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShoppingApp_Domain\obj\Debug\netstandard2.0\ShoppingApp_Domain.csproj.CoreCompileInputs.cache
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShoppingApp_Domain\obj\Debug\netstandard2.0\ShoppingApp_Domain.dll
+C:\Users\v-amosamos\source\repos\ShoppingApp\ShoppingApp_Domain\obj\Debug\netstandard2.0\ShoppingApp_Domain.pdb
