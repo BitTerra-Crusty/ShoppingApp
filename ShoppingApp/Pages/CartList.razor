@@ -12,7 +12,7 @@
 
 <div class="main container">
     <div class="content px-4">
-        <div class="">
+        <div class="row">
             <div class="col-sm-12">
                 <h3 class="text-center">Cart List</h3>
 
@@ -23,7 +23,7 @@
                 else
 
                 {
-                    <table class="table table-responsive">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">Photo</th>
@@ -62,24 +62,28 @@
                                 </tr>
                             </tbody>
                         }
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>Total: R @(Math.Round(total,2))</td>
-                        </tr>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Total: R @(Math.Round(total,2))</td>
+                            </tr>
+                        </tfoot>
                     </table>
                 }
-                @{
-                    string check = "0";
-                }
-                @if (CartService.CustomerProducts.Count() > 0)
-                {
-                    <a href="/Thankyou/@check" class="btn btn-lg btn-outline-success float-right">Check Out</a>
-                }
             </div>
+        </div>
+        <div class="row">
+            @{
+                string check = "0";
+            }
+            @if (CartService.CustomerProducts.Count() > 0)
+            {
+                <a href="/Thankyou/@check" class="btn btn-lg btn-outline-success float-right">Check Out</a>
+            }
         </div>
     </div>
 </div>

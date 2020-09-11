@@ -126,6 +126,24 @@ header nav ul li a{
     display: block;
     z-index:8;
 }
+header nav ul li .search span {
+    position: absolute;
+    margin-left: 200px;
+    height: 25px;
+    line-height: 50px;
+    display: flex;
+    align-items: center;
+}
+header nav ul li .search span
+{
+    color: lawngreen;
+}
+header nav ul li .search input, header nav ul li .search input:focus {
+    /*  padding-left: 25px;*/
+    height: 30px;
+    background: none;
+    color: lawngreen;
+}
 header nav ul li a:hover, header nav ul li .active {
     background-color: rgba(255, 255, 255, 0.1);
     color: lawngreen;
@@ -168,6 +186,15 @@ header nav ul li a:hover, header nav ul li .active {
     font-size:20px;
 }
 @media (max-width: 767.98px) {
+
+    header nav ul li .search span {
+        position: absolute;
+        margin-left: 90%;
+        height: 25px;
+        line-height: 50px;
+        display: flex;
+        align-items: center;
+    }
     .navbar-toggler
     {
         display: block;
@@ -245,6 +272,10 @@ header nav ul li a:hover, header nav ul li .active {
 .card-img {
     height: 200px;
     width: 200px;
+}
+.card-img-details {
+    height: 350px;
+    width: 350px;
 }
 .desc-view-btn button, .desc-view-btn a:link{
     width: 100%;

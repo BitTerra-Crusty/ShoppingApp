@@ -2,15 +2,23 @@
 @using ShoppingApp.Pages
 @inject CartServices CartService
 @inject CategoryServices CategoryService
+@inject ProductServices ProductService
 
 <header class="">
     <div class="logo navbar-brand">
         <a href=""> <img src="/images/icon.png" height="30" alt="logo" /> ShopFood</a>
     </div>
-
     <nav class="@NavMenuCssClass">
         <div>
             <ul class="col-sm-12">
+                <li>
+                    <div class="input-group search my-3">
+                        <span>
+                            <i class="oi oi-magnifying-glass"></i>
+                        </span>
+                        <input class="form-control" id="myInput"   type="text" @oninput="() => ProductService.FilterByProductName(ProductName)" @bind-value="ProductName" placeholder="Search..">
+                    </div>
+                </li>
                 <li>
                     <a class="nav-link" href="Category" Match="NavLinkMatch.All">
                         <span aria-hidden="true" class="text-secondary"></span> Categories
@@ -35,17 +43,19 @@
         <span class="oi oi-menu"></span>
     </div>
 </header>
-    @code {
-        private bool collapseNavMenu = true;
+@code {
 
-        private string NavMenuCssClass => collapseNavMenu ? "active" : null;
+    public string ProductName { get; set; } = string.Empty;
 
-        private void ToggleNavMenu()
-        {
-            collapseNavMenu = !collapseNavMenu;
-        }
+    private bool collapseNavMenu = false;
 
-        [Parameter]
-        public int cartCount { get; set; }
+    private string NavMenuCssClass => collapseNavMenu ? "active" : null;
 
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
     }
+
+    [Parameter]
+    public int cartCount { get; set; }
+}
