@@ -17,12 +17,18 @@
 <div class="main container">
     <div class="content px-4">
         <div class="container">
-            <h1 class="text-center text-success">Thank you for shopping with us, Please come again</h1>
+            <div class="row h-100">
+                <div class="thank-you-messege">
+                    <div class="vertical-center">
+                        <h1 class="text-center text-success">Thank you for shopping with us, Please come again</h1>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-        @code
+@code
 {
-            [Parameter]
-            public string categoryId { get; set; }
-        }
+    [Parameter]
+    public string categoryId { get; set; }
+}

@@ -4,7 +4,7 @@
 @inject ProductServices ProductService
 @inject CartServices CartService
 
-<NavMenu cartCount="@CartService.CustomerProducts.Count()"></NavMenu>
+<NavMenu cartCount="@CartService.CustomerProducts.Count()" OnfilterByproduct="FilterByProduct"></NavMenu>
 
 @*End of nav*@
 <div class="main container">
@@ -16,13 +16,32 @@
             products = products.Where(p => p.CategoryId == int.Parse(categoryId)).ToList();
         }
 
-        <div class="row">
+        <div class="row my-5">
             @if (products == null)
             {
                 <h3>No Products available</h3>
             }
             else
             {
+                if (ProductService.FilteredProducts.Where(p => p.CategoryId == int.Parse(categoryId)).ToList().Count() > 0)
+                {
+                    products = ProductService.FilteredProducts.Where(p => p.CategoryId == int.Parse(categoryId)).ToList();
+                }
+                else
+                {
+                    if (ProductName != null && ProductName.Length > 0)
+                    {
+                        <h3 class="text-danger text-center col-12">No product '@ProductName' is found</h3>
+                        <h4 class="text-secondary col-12">All Products...</h4>
+                    }
+                }
+                <h4 class="text-secondary col-sm-12 text-center" id="down">Product List</h4>
+                <div class="col-sm-12 my-4">
+                    <div class="col-sm-12 col-md-4 float-md-left">
+
+                    </div>
+                    <Sort OnSort="Sort"></Sort>
+                </div>
                 foreach (var product in products)
                 {
                     <div class="col-sm-12 col-md-6 col-lg-4">
@@ -35,7 +54,7 @@
                                     <a href="/ProductDetails/@product.ProductId"><img src='@product.PhotoPath' title='@product.Name' class="card-img" alt='@product.Name' /></a>
                                 </div>
                                 @*<div class="text-center">@product.Description</div>*@
-                                <div class="text-right btn btn-secondary">R @product.Price</div>
+                                <div class="text-right btn btn-secondary">R @product.Price.ToString("N")</div>
                             </div>
 
                             @if (CartService.CustomerProducts.FirstOrDefault(c => c.ProductId == product.ProductId) != null)
@@ -69,4 +88,16 @@
 {
     [Parameter]
     public string categoryId { get; set; }
+
+    private string ProductName { get; set; }
+
+    public void FilterByProduct(string productName)
+    {
+        ProductName = productName;
+        ProductService.FilteredProducts.ToList();
+    }
+    public void Sort(string sortValue)
+    {
+        ProductService.Products.ToList();
+    }
 }

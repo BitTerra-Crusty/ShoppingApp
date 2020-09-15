@@ -12,7 +12,6 @@ html, body {
 a, .btn-link {
     color: #0366d6;
 }
-
 .btn-primary {
     color: #fff;
     background-color: #1b6ec2;
@@ -48,14 +47,21 @@ ul{
     overflow: hidden;
     text-overflow: ellipsis;
 }
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+}
 .content {
     padding-top: 1.1rem;
 }
 
-.navbar-toggler {
+.navbar-toggler .oi-menu:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
-
+.navbar-toggler a
+{
+    text-decoration: none;
+}
 .valid.modified:not([type=checkbox]) {
     outline: 1px solid #26b050;
 }
@@ -98,16 +104,16 @@ header {
     z-index: 2;
 }
 header .logo {
-    color: lawngreen;
+    color: #2ECC40;
     height: 50px;
-    line-height: 50px;
+    line-height: 30px;
     font-size: 20px;
     float: left;
     font-weight: bold;
 }
 header .logo a{
     text-decoration: none;
-    color: lawngreen;
+    color: #2ECC40;
 }
 header nav{
     float: right;
@@ -119,35 +125,43 @@ header nav ul{
 }
 header nav ul li a{
     height: 50px;
-    line-height: 50px;
+    line-height: 30px;
     padding: 0 20px;
-    color: lawngreen;
+    color: #2ECC40;
     text-decoration: none;
     display: block;
     z-index:8;
 }
 header nav ul li .search span {
     position: absolute;
-    margin-left: 200px;
+    margin-left: 170px;
     height: 25px;
     line-height: 50px;
     display: flex;
     align-items: center;
+    color: #2ECC40;
+    margin-top: 10px;
 }
-header nav ul li .search span
-{
-    color: lawngreen;
+.text-sucess{
+    color: #2ECC40 !important;
+}
+.btn-success {
+    background-color: #2ECC40 !important;
 }
 header nav ul li .search input, header nav ul li .search input:focus {
     /*  padding-left: 25px;*/
     height: 30px;
     background: none;
-    color: lawngreen;
+    color: #2ECC40;
+    margin-top: 10px;
+    margin-right: 25px;
 }
 header nav ul li a:hover, header nav ul li .active {
     background-color: rgba(255, 255, 255, 0.1);
-    color: lawngreen;
+    color: #2ECC40;
     text-decoration: none;
+    height: 50px;
+    line-height: 30px;
 }
 .showcase {
     width: 100% !important;
@@ -159,22 +173,40 @@ header nav ul li a:hover, header nav ul li .active {
     background-position: center;
     display: table;
 }
+.thank-you-messege
+{
+    display: table;
+    min-height: calc(80vh);
+}
 .vertical-center {
     display: table-cell;
-    vertical-align:middle;
+    vertical-align: middle;
 }
+.showcase
+{
+    margin-bottom: -70px;
+}
+#down {
+    margin: 50px;
+}
+/*.aa a{
+    text-decoration: none;
+    cursor: auto;
+}*/
 .showcase .vertical-center h3 {
     font-family: Catamaran;
     font-size: 90px;
     font-weight: bolder;
     color: #494D5F;
     text-align: center;
+    text-shadow: 2px 2px 2px lawngreen;
 }
 .showcase .vertical-center h4 {
     font-size: 50px;
     font-style: italic;
     text-align: center;
     color: #494D5F;
+    text-shadow: 2px 2px 2px #fff;
 }
 .navbar-toggler {
     color: greenyellow;
@@ -185,7 +217,8 @@ header nav ul li a:hover, header nav ul li .active {
     height: 50px;
     font-size:20px;
 }
-@media (max-width: 767.98px) {
+/*767.98*/
+@media (max-width: 920.98px) {
 
     header nav ul li .search span {
         position: absolute;
@@ -198,6 +231,7 @@ header nav ul li a:hover, header nav ul li .active {
     .navbar-toggler
     {
         display: block;
+        margin-right: 60px;
     }
     header 
     {
@@ -296,3 +330,65 @@ header nav ul li a:hover, header nav ul li .active {
     color: #00c689;
     font-size:25px;
 }
+/*Footer*/
+footer {
+    padding: 10px;
+    margin: 0 auto;
+    margin-top: 200px;
+    font-size: 12px;
+    color: #fff;
+    background: #494D5F;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+    line-height: 30px;
+}
+
+footer a:hover {
+    font-size: 18px;
+}
+
+footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer .social-media h4:after, footer .info-for h4:after {
+content: '';
+background: #2ECC40;
+display: block;
+width: 150px;
+height: 3px;
+margin: 10px auto;
+}
+
+footer .footer-line hr {
+border: 1px solid #2ECC40;
+width: 80%;
+}
+
+footer .fa-facebook, footer .fa-twitter, footer .fa-instagram {
+font-size: 15px;
+line-height: 20px;
+width: 20px;
+height: 20px;
+border-radius: 50%;
+}
+
+footer .fa-facebook {
+color: #3b5998;
+border: 1px solid #3b5998;
+}
+
+footer .fa-twitter {
+color: #1DA1F2;
+border: 1px solid #1DA1F2;
+}
+
+footer .fa-instagram {
+color: #C13584;
+border: 1px solid #C13584;
+}
+

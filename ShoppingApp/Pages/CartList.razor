@@ -46,13 +46,13 @@
 
                                     <td> @cartProduct.Name </td>
                                     <td>@CategoryService.GetCategories().FirstOrDefault(c => c.categoryId == cartProduct.CategoryId).Name</td>
-                                    <td>R @(Math.Round(cartProduct.Price,2))</td>
+                                    <td>R @(Math.Round(cartProduct.Price,2).ToString("N"))</td>
                                     <td>R @(Math.Round(cartProduct.Price * cart.Quantity, 2))</td>
                                     <td>
                                         <div class="input-group">
-                                            <button class="btn btn-success rem-Product" @onclick="(() => CartService.DecreaseProductQuantity(cartProduct.ProductId,1,1))"><b>-</b></button>
-                                            <input type="text" readonly class="text-center form-control" value="@cart.Quantity in a Cart" />
-                                            <button class="btn btn-success add-Product" @onclick="(() => CartService.IncreaseProductQuantity(cartProduct.ProductId,1,1))"><b>+</b></button>
+                                            <button class="btn btn-success rem-Product col-sm-12 col-md-2" @onclick="(() => CartService.DecreaseProductQuantity(cartProduct.ProductId,1,1))"><b>-</b></button>
+                                            <input type="text" readonly class="text-center form-control col-sm-12" value="@cart.Quantity in a Cart" />
+                                            <button class="btn btn-success add-Product col-sm-12 col-md-2" @onclick="(() => CartService.IncreaseProductQuantity(cartProduct.ProductId,1,1))"><b>+</b></button>
                                         </div>
                                     </td>
 
@@ -69,7 +69,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>Total: R @(Math.Round(total,2))</td>
+                                <td>Total: R @(Math.Round(total,2).ToString("N"))</td>
                             </tr>
                         </tfoot>
                     </table>

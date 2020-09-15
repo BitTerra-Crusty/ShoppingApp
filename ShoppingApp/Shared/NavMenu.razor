@@ -6,17 +6,17 @@
 
 <header class="">
     <div class="logo navbar-brand">
-        <a href=""> <img src="/images/icon.png" height="30" alt="logo" /> ShopFood</a>
+        <a href=""> <img src="/images/icon.png" height="30" alt="logo" /> FOODIES</a>
     </div>
     <nav class="@NavMenuCssClass">
         <div>
             <ul class="col-sm-12">
                 <li>
-                    <div class="input-group search my-3">
+                    <div class="input-group search">
                         <span>
                             <i class="oi oi-magnifying-glass"></i>
                         </span>
-                        <input class="form-control" id="myInput"   type="text" @oninput="() => ProductService.FilterByProductName(ProductName)" @bind-value="ProductName" placeholder="Search..">
+                        <input class="form-control" id="myInput" type="text" @bind="ProductName" @bind:event="oninput" placeholder="Search..">
                     </div>
                 </li>
                 <li>
@@ -31,7 +31,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link" href="#" Match="NavLinkMatch.All">
+                    <a class="nav-link user disabled" href="#" Match="NavLinkMatch.All">
                         <span class="oi oi-person" aria-hidden="true"></span>&nbsp;&nbsp;User
                     </a>
                 </li>
@@ -40,12 +40,52 @@
         </div>
     </nav>
     <div class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="oi oi-menu"></span>
+        <a href="Cart">
+            <span class="oi oi-cart text-success" aria-hidden="true"></span>&nbsp;&nbsp; <span class="badge-outline-success text-success mr-4">  @cartCount</span>
+        </a>
+        <span class="oi oi-menu">
+        </span>
     </div>
 </header>
 @code {
+    private string _ProductName;
+    public string ProductName
+    {
+        set
+        {   this._ProductName = value;
+            FilterByProductName();
+        }
+        get
+        {
+            return _ProductName;
+        }
+    }
 
-    public string ProductName { get; set; } = string.Empty;
+    [Parameter]
+    public EventCallback<string> OnfilterByproduct { get; set; }
+
+    public void FilterByProductName()
+    {
+        if (ProductName == null || ProductName.Trim() == "")
+        {
+            ProductService.FilteredProducts.Clear();
+        }
+        else
+        {
+            ProductService.FilteredProducts.Clear();
+
+            foreach (var product in ProductService.Products)
+            {
+                if (product.Name.ToLower().Contains(ProductName.ToLower()))
+                {
+                    ProductService.FilteredProducts.Add(product);
+                }
+            }
+
+        }
+        ProductService.FilteredProductsCopy.AddRange(ProductService.FilteredProducts);
+        OnfilterByproduct.InvokeAsync(ProductName);
+    }
 
     private bool collapseNavMenu = false;
 

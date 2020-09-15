@@ -1,0 +1,59 @@
+﻿@using ShoppingApp.Services
+
+@inject ProductServices ProductService
+
+<div class="form-group">
+    <label for="sortList">Sort Products</label>
+    <select id="sortList" @bind="SortValue" @bind:event="onchange" class="custom-select-sm form-control col-sm-12 col-md-4">
+        <option selected disabled value="">Sort By</option>
+        <option value="Default">Default</option>
+        <option value="highToLow">Price: High to Low</option>
+        <option value="lowToHigh">Price: Low to High</option>
+    </select>
+</div>
+@code
+{
+    public string _SortValue;
+    public string SortValue
+    {
+        set
+        {
+            this._SortValue = value;
+            SortProducts();
+        }
+        get
+        {
+            return _SortValue;
+        }
+    }
+
+    [Parameter]
+    public EventCallback<string> OnSort { get; set; }
+
+    public void SortProducts()
+    {
+        if (SortValue != null || SortValue != "")
+        {
+            if (SortValue == "highToLow")
+            {
+                ProductService.Products = ProductService.Products.OrderByDescending(o => o.Price).ToList();
+                ProductService.FilteredProducts = ProductService.FilteredProducts.OrderByDescending(o => o.Price).ToList();
+            }
+            else if (SortValue == "lowToHigh")
+            {
+                ProductService.Products = ProductService.Products.OrderBy(o => o.Price).ToList();
+                ProductService.FilteredProducts = ProductService.FilteredProducts.OrderBy(o => o.Price).ToList();
+            }
+            else
+            {
+                ProductService.Products.Clear();
+                ProductService.Products.AddRange(ProductService.ProductsCopy);
+
+                ProductService.FilteredProducts.Clear();
+                ProductService.FilteredProducts.AddRange(ProductService.FilteredProductsCopy);
+            }
+
+            OnSort.InvokeAsync(SortValue);
+        }
+    }
+}

@@ -1,4 +1,5 @@
-﻿using ShoppingApp_Domain.Entities;
+﻿using Microsoft.AspNetCore.Components;
+using ShoppingApp_Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,15 @@ namespace ShoppingApp.Services
     public class ProductServices
     {
         public List<Product> Products;
+        public List<Product> ProductsCopy = new List<Product>();
         public List<Product> FilteredProducts = new List<Product>();
+        public List<Product> FilteredProductsCopy = new List<Product>();
 
         public ProductServices()
         {
             LoadProducts();
+            ProductsCopy.AddRange(Products);
+
         }
         public void LoadProducts()
         {
@@ -229,24 +234,9 @@ namespace ShoppingApp.Services
         {
             return Products;
         }
-        public void FilterByProductName(string productName)
-        {
-            if(productName == null || productName.Trim() == "")
-            {
-                FilteredProducts.Clear();
-            }
-            else
-            {
-                foreach (var product in Products)
-                {
-                    if (product.Name.Contains(productName))
-                    {
-                        FilteredProducts.Add(product);
-                    }
-                }
-
-            }
-        }
+       
+        
+        
         public void RemoveProduct(int productId)
         {
             Products.Remove(Products.FirstOrDefault(p => p.ProductId == productId));

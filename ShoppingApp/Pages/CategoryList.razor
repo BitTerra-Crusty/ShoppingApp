@@ -5,7 +5,7 @@
 @inject CartServices CartService
 @inject CategoryServices CategoryService
 
-<NavMenu cartCount="@CartService.CustomerProducts.Count()"></NavMenu>
+<NavMenu cartCount="@CartService.CustomerProducts.Count()" OnfilterByproduct="FilterByProduct"></NavMenu>
 
 @*End of nav*@
 <div class="main container">
@@ -22,9 +22,22 @@
                 }
                 else
                 {
+                    var categories = CategoryService.GetCategories();
+                    if (CategoryName != null && CategoryName != "")
+                    {
+                        categories = categories.Where(c => c.Name.ToLower().Contains(CategoryName.ToLower())).ToList();
+                    }
+
+                    if (categories.Count < 1)
+                    {
+                        <h3 class="text-danger text-center col-12">No category '@CategoryName' is found</h3>
+                        <h4 class="text-secondary col-12">All Categories...</h4>
+                        categories = CategoryService.GetCategories();
+                    }
+
                     <div class="categories">
                         <div class="row">
-                            @foreach (var category in CategoryService.GetCategories())
+                            @foreach (var category in categories)
                             {
                                 <div class="col-sm-12 col-md-6 col-lg-4">
                                     <div class="card">
@@ -50,3 +63,13 @@
         </div>
     </div>
 </div>
+@code
+{
+    private string CategoryName { get; set; }
+
+    public void FilterByProduct(string productName)
+    {
+        CategoryName = productName; //in a category page, a category shoulb be searched rather than product
+        ProductService.FilteredProducts.ToList();
+    }
+}
