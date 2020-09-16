@@ -51,7 +51,6 @@
                                 <div class="text-center">
                                     <a href="/ProductDetails/@product.ProductId"><img src='@product.PhotoPath' title='@product.Name' class="card-img" alt='@product.Name' /></a>
                                 </div>
-                                @*<div class="text-center">@product.Description</div>*@
                                 <div class="text-right btn btn-secondary">R @product.Price.ToString("N")</div>
                             </div>
 
@@ -73,8 +72,6 @@
                                     <button class="btn btn-success" id="@product.ProductId" @onclick="(() => CartService.CreateCart(product.ProductId, 1, 1))">Add to cart</button>
                                 </div>
                             }
-
-
                         </div>
                     </div>
                 }

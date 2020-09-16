@@ -32,7 +32,7 @@ namespace ShoppingApp.Services
                 categoryId = 5,
                 Description = "Try to include a variety of nutrient-dense proteins in the foods you eat. Choose lean (low-fat) meats and poultry. Keep in mind that you can also get protein from seafood, eggs, beans, and peas, as well as nuts, seeds, and soy products.",
                 Name = "PROTEINS",
-                ImagePath = "/images/categories/eggs.jpg"
+                ImagePath = "/images/categories/eggs.png"
             };
             Category category3 = new Category()
             {

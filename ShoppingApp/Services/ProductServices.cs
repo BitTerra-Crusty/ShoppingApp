@@ -82,7 +82,7 @@ namespace ShoppingApp.Services
                 CategoryId = 2,
                 Description = "like Bonnie Centennial and Super Fantastic, boast robust, slightly more acidic flavors that"+
                 " many people find reminiscent of their grandparents’ tomatoes.",
-                PhotoPath = "/images/categories/fruits/tomatoes.png",
+                PhotoPath = "/images/categories/fruits/tomatoe.png",
                 Name = "Tomatoe",
                 Price = 20,
             };
@@ -106,7 +106,7 @@ namespace ShoppingApp.Services
                 Description = "n imprecise term but nevertheless used to describe cereals that don't use pesticides, artificial fertilizers,"+
                 " and no genetically modified ingredients. Their sweeteners are also natural (like honey for instance).",
                 PhotoPath = "/images/categories/grains/cereal.png",
-                Name = "Ceral",
+                Name = "Cereal",
                 Price = 32.99,
             };
             Product product9 = new Product()
@@ -116,7 +116,7 @@ namespace ShoppingApp.Services
                 Description = "Also sometimes referred to as “snowflake popcorn”, butterfly is well known for its use in theater-style and"+
                 " home-popped popcorn products, usually offered-up with nothing more than a little salt and perhaps some melted butter."+
                 " Its relatively delicate shape means butterfly popcorn is best consumed fresh-popped for maximum crunch and freshness.",
-                PhotoPath = "/images/categories/grains/popCorn.jpg",
+                PhotoPath = "/images/categories/grains/popCorn.png",
                 Name = "Pop Coins",
                 Price = 5.44,
             };
@@ -165,7 +165,7 @@ namespace ShoppingApp.Services
                 " They're usually sold pre-cooked—fried or roasted,"+
                 " and salted—and make for great snacks. If you want to cook or bake with them, use them in their raw state.",
                 PhotoPath = "/images/categories/Proteins/nuts.png",
-                Name = "Puts",
+                Name = "Nuts",
                 Price = 53.55,
             };
             Product product14 = new Product()
