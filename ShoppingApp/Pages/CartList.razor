@@ -34,7 +34,9 @@
                                 <th scope="col" class="text-center">Quantity</th>
                             </tr>
                         </thead>
-                        @{ double total = 0;}
+                        @{ double total = 0.0;
+                            var numberOfItems = 0;
+                          }
                         @foreach (var cart in CartService.CustomerProducts)
                         {
                             <tbody>
@@ -58,6 +60,7 @@
 
                                     @{
                                         total = total + (cartProduct.Price * cart.Quantity);
+                                        numberOfItems = numberOfItems + cart.Quantity;
                                     }
                                 </tr>
                             </tbody>
@@ -69,7 +72,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>Total: R @(Math.Round(total,2).ToString("N"))</td>
+                                <td>Total:( @numberOfItems Items ) R@(Math.Round(total,2).ToString("N"))</td>
                             </tr>
                         </tfoot>
                     </table>

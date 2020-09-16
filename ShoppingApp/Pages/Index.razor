@@ -3,6 +3,7 @@
 
 @inject ProductServices ProductService
 @inject CartServices CartService
+@inject IJSRuntime JSRuntime
 
 <NavMenu cartCount="@CartService.CustomerProducts.Count()" OnfilterByproduct="FilterByProduct"></NavMenu>
 
@@ -11,7 +12,7 @@
 
 <div class="row">
     <div class="col-sm-12 aa">
-        <div class="showcase" onclick="document.getElementById('down').scrollIntoView({behavior:'smooth'})">
+        <div class="showcase" id="showcase-id" onclick="document.getElementById('down').scrollIntoView({behavior:'smooth'})">
             <div class="vertical-center text-success">
                 <h3>Foodies</h3>
                 <h4>Select and buy any type of food you want</h4>
@@ -32,17 +33,21 @@
 
                 if (ProductService.FilteredProducts.Count() > 0)
                 {
-                    products = ProductService.FilteredProducts;
-
-                }
-                else
-                {
                     if (ProductName != null && ProductName.Length > 0)
                     {
+                        products = ProductService.FilteredProducts;
+
+                    }
+            }
+                else
+            {
+                if (ProductName != null && ProductName.Length > 0)
+                {
                         <h3 class="text-danger text-center col-12">No product '@ProductName' is found</h3>
                         <h4 class="text-secondary col-12">All Products...</h4>
                     }
                 }
+                
                 <h4 class="text-secondary col-sm-12 text-center" id="down">Product List</h4>
                 <div class="col-sm-12 my-4">
                     <div class="col-sm-12 col-md-4 float-md-left">
@@ -94,16 +99,29 @@
 </div>
 @code
 {
-    private string ProductName { get; set; }
-
-    public void FilterByProduct(string productName)
+    public string ProductName { get; set; }
+    public async Task FilterByProduct(string productName)
     {
         ProductName = productName;
         ProductService.FilteredProducts.ToList();
+
+        if(ProductService.FilteredProducts.Count > 0)
+        {
+            await CallJsMethod();
+        }
+        else
+        {
+            await JSRuntime.InvokeVoidAsync("MoveUpToError");
+        }
     }
 
     public void Sort(string sortValue)
     {
         ProductService.Products.ToList();
+    }
+
+    public async Task CallJsMethod()
+    {
+        await JSRuntime.InvokeVoidAsync("MoveDown");
     }
 }

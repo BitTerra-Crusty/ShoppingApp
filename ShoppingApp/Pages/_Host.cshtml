@@ -31,7 +31,19 @@
         <a href="" class="reload">Reload</a>
         <a class="dismiss">🗙</a>
     </div>
-
     <script src="_framework/blazor.server.js"></script>
+    <script>
+        function MoveDown()
+        {
+            document.getElementById('down').scrollIntoView({ behavior: 'smooth' });
+        }
+        function MoveUpToError() {
+            document.getElementById('showcase-id').scrollIntoView({ behavior: 'smooth' });
+        }
+        function MoveUp() {
+            document.getElementById('up').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+
 </body>
 </html>

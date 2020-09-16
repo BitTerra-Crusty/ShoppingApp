@@ -3,13 +3,14 @@
 
 @inject ProductServices ProductService
 @inject CartServices CartService
+@inject IJSRuntime JSRuntime
 
 <NavMenu cartCount="@CartService.CustomerProducts.Count()" OnfilterByproduct="FilterByProduct"></NavMenu>
 
 @*End of nav*@
-<div class="main container">
-    <div class="content px-4">
 
+<div class="main container">
+    <div class="content px-4" id="up">
         @{
             var products = ProductService.Products;
 
@@ -23,6 +24,7 @@
             }
             else
             {
+                
                 if (ProductService.FilteredProducts.Where(p => p.CategoryId == int.Parse(categoryId)).ToList().Count() > 0)
                 {
                     products = ProductService.FilteredProducts.Where(p => p.CategoryId == int.Parse(categoryId)).ToList();
@@ -35,11 +37,7 @@
                         <h4 class="text-secondary col-12">All Products...</h4>
                     }
                 }
-                <h4 class="text-secondary col-sm-12 text-center" id="down">Product List</h4>
                 <div class="col-sm-12 my-4">
-                    <div class="col-sm-12 col-md-4 float-md-left">
-
-                    </div>
                     <Sort OnSort="Sort"></Sort>
                 </div>
                 foreach (var product in products)
@@ -91,10 +89,12 @@
 
     private string ProductName { get; set; }
 
-    public void FilterByProduct(string productName)
+    public async Task FilterByProduct(string productName)
     {
         ProductName = productName;
         ProductService.FilteredProducts.ToList();
+
+        await JSRuntime.InvokeVoidAsync("MoveUp");
     }
     public void Sort(string sortValue)
     {

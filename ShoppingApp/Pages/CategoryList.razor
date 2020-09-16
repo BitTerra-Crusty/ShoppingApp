@@ -4,15 +4,16 @@
 @inject ProductServices ProductService
 @inject CartServices CartService
 @inject CategoryServices CategoryService
+@inject IJSRuntime JSRuntime
 
 <NavMenu cartCount="@CartService.CustomerProducts.Count()" OnfilterByproduct="FilterByProduct"></NavMenu>
 
 @*End of nav*@
-<div class="main container">
+<div class="main container" id="up">
     <div class="content px-4">
 
         <div class="main">
-            <div class="content px-4">
+            <div class="content px-4 my-5">
 
                 @if (CategoryService.GetCategories() == null)
                 {
@@ -67,9 +68,12 @@
 {
     private string CategoryName { get; set; }
 
-    public void FilterByProduct(string productName)
+    public async Task FilterByProduct(string productName)
     {
         CategoryName = productName; //in a category page, a category shoulb be searched rather than product
         ProductService.FilteredProducts.ToList();
+
+        await JSRuntime.InvokeVoidAsync("MoveUp");
     }
+   
 }

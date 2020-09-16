@@ -47,6 +47,9 @@ ul{
     overflow: hidden;
     text-overflow: ellipsis;
 }
+#up{
+    margin-bottom: 350px;
+}
 a.disabled {
     pointer-events: none;
     cursor: default;
