@@ -5,6 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Entities\CustomerProduct.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Entities\ProductGroup" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="View Models\" />
   </ItemGroup>
 

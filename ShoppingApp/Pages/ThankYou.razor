@@ -9,10 +9,10 @@
 
 @if (int.Parse(categoryId) == 0)
 {
-    CartService.CustomerProducts.Clear();
+    CartService.Cart.ProductGroups.Clear();
 }
 
-<NavMenu cartCount="@CartService.CustomerProducts.Count()"></NavMenu>
+<NavMenu cartCount="@CartService.Cart.ProductGroups.Count()"></NavMenu>
 
 <div class="main container">
     <div class="content px-4">

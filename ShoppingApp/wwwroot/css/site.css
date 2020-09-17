@@ -167,6 +167,8 @@ header nav ul li a:hover, header nav ul li .active {
     line-height: 30px;
 }
 .showcase {
+    position: relative;
+    top: 50px;
     width: 100% !important;
     min-height: calc(80vh);
     background-image: url("/images/food.jpg");
@@ -176,8 +178,17 @@ header nav ul li a:hover, header nav ul li .active {
     background-position: center;
     display: table;
 }
-.thank-you-messege
-{
+.dark-background {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 100% !important;
+    min-height: calc(80vh);
+    background-color: #0000008a;
+    display: table;
+    z-index: 1;
+}
+.thank-you-messege {
     display: table;
     min-height: calc(80vh);
 }
@@ -196,20 +207,24 @@ header nav ul li a:hover, header nav ul li .active {
     text-decoration: none;
     cursor: auto;
 }*/
-.showcase .vertical-center h3 {
+.showcase .dark-background .vertical-center h3 {
     font-family: Catamaran;
     font-size: 90px;
     font-weight: bolder;
-    color: #494D5F;
+    /*color: #494D5F;*/
+    color: #fff;
     text-align: center;
     text-shadow: 2px 2px 2px lawngreen;
+    z-index: 4;
 }
-.showcase .vertical-center h4 {
+.showcase .dark-background .vertical-center h4 {
     font-size: 50px;
     font-style: italic;
     text-align: center;
-    color: #494D5F;
-    text-shadow: 2px 2px 2px #fff;
+    color: #fff;
+    /*color: #494D5F;*/
+    text-shadow: 2px 2px 2px lawngreen;
+    z-index: 4;
 }
 .navbar-toggler {
     color: greenyellow;

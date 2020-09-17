@@ -4,7 +4,7 @@
 @inject ProductServices ProductService
 @inject CartServices CartService
 
-<NavMenu cartCount="@CartService.CustomerProducts.Count()"></NavMenu>
+<NavMenu cartCount="@CartService.Cart.ProductGroups.Count()"></NavMenu>
 
 <div class="main container">
     <div class="content px-4">
@@ -12,7 +12,7 @@
         @{
             var products = ProductService.Products;
 
-            var product = products.FirstOrDefault(p => p.ProductId == int.Parse(ProductId));
+            var product = products.FirstOrDefault(p => p.Id == int.Parse(ProductId));
         }
 
         <div class="">
@@ -29,7 +29,7 @@
                                 @product.Name
                             </div>
                             <div class="text-center">
-                                <img src='@product.PhotoPath' title='@product.Name' class="card-img-details h-100" alt='@product.Name' />
+                                <img src='@product.Image' title='@product.Name' class="card-img-details h-100" alt='@product.Name' />
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-8 col-lg-5 my-auto border-4 border-right border-success">@product.Description</div>
@@ -37,13 +37,13 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12 col-md-8 col-lg-5 my-4">
-                            @if (CartService.CustomerProducts.FirstOrDefault(c => c.ProductId == product.ProductId) != null)
+                            @if (CartService.Cart.ProductGroups.Any(c => c.ProductId == product.Id))
                             {
-                                <div class="text-center" onclick="ChangeButtonForm('@product.ProductId')">
+                                <div class="text-center" onclick="ChangeButtonForm('@product.Id')">
                                     <div class="input-group">
-                                        <button class="btn w-25 btn-success rem-Product" id="@product.ProductId" @onclick="(() => CartService.DecreaseProductQuantity(product.ProductId, 1, 1))"><b>-</b></button>
-                                        <input type="text" readonly class="text-center form-control float-left" value="@CartService.CustomerProducts.FirstOrDefault(c => c.ProductId == product.ProductId).Quantity in a Cart" />
-                                        <button class="btn w-25 btn-success add-Product" id="@product.ProductId" @onclick="(() => CartService.IncreaseProductQuantity(product.ProductId, 1, 1))"><b>+</b></button>
+                                        <button class="btn w-25 btn-success rem-Product" id="@product.Id" @onclick="(() => CartService.DecreaseProductQuantity(product.Id))"><b>-</b></button>
+                                        <input type="text" readonly class="text-center form-control float-left" value="@CartService.Cart.ProductGroups.FirstOrDefault(c => c.ProductId == product.Id).Quantity in a Cart" />
+                                        <button class="btn w-25 btn-success add-Product" id="@product.Id" @onclick="(() => CartService.IncreaseProductQuantity(product.Id))"><b>+</b></button>
 
                                     </div>
 
@@ -51,8 +51,8 @@
                             }
                             else
                             {
-                                <div class="text-center desc-view-btn" onclick="ChangeButtonForm('@product.ProductId')">
-                                    <button class="btn w-25 btn-success" id="@product.ProductId" @onclick="(() => CartService.CreateCart(product.ProductId, 1, 1))">Add to cart</button>
+                                <div class="text-center desc-view-btn" onclick="ChangeButtonForm('@product.Id')">
+                                    <button class="btn w-25 btn-success" id="@product.Id" @onclick="(() => CartService.CreateCartAndAddItemsToCart(product.Id, 1, 1))">Add to cart</button>
                                 </div>
                             }
                         </div>

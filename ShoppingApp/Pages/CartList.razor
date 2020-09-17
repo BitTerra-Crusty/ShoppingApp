@@ -6,7 +6,7 @@
 @inject CartServices CartService
 @inject CategoryServices CategoryService
 
-<NavMenu cartCount="@CartService.CustomerProducts.Count()"></NavMenu>
+<NavMenu cartCount="@CartService.Cart.ProductGroups.Count()"></NavMenu>
 
 @*End of nav*@
 
@@ -16,7 +16,7 @@
             <div class="col-sm-12">
                 <h3 class="text-center">Cart List</h3>
 
-                @if (CartService.CustomerProducts == null || CartService.CustomerProducts.Count() < 1)
+                @if (CartService.Cart.ProductGroups == null || CartService.Cart.ProductGroups.Count() < 1)
                 {
                     <h3 class="text-center text-secondary">Nothing in the cart</h3>
                 }
@@ -36,31 +36,31 @@
                         </thead>
                         @{ double total = 0.0;
                             var numberOfItems = 0;
-                          }
-                        @foreach (var cart in CartService.CustomerProducts)
+                        }
+                        @foreach (var group in CartService.Cart.ProductGroups)
                         {
                             <tbody>
                                 <tr>
                                     @{
-                                        var cartProduct = ProductService.Products.FirstOrDefault(pp => pp.ProductId == cart.ProductId);
+                                        var product = ProductService.Products.FirstOrDefault(pp => pp.Id == group.ProductId);
                                     }
-                                    <th scope="row"><img height="30" src="@cartProduct.PhotoPath" alt="Product image" /></th>
+                                    <th scope="row"><img height="30" src="@product.Image" alt="Product image" /></th>
 
-                                    <td> @cartProduct.Name </td>
-                                    <td>@CategoryService.GetCategories().FirstOrDefault(c => c.categoryId == cartProduct.CategoryId).Name</td>
-                                    <td>R @(Math.Round(cartProduct.Price,2).ToString("N"))</td>
-                                    <td>R @(Math.Round(cartProduct.Price * cart.Quantity, 2))</td>
+                                    <td> @product.Name </td>
+                                    <td>@CategoryService.GetCategories().FirstOrDefault(c => c.Id == product.CategoryId).Name</td>
+                                    <td>R @(Math.Round(product.Price,2).ToString("N"))</td>
+                                    <td>R @(Math.Round(product.Price * group.Quantity, 2))</td>
                                     <td>
                                         <div class="input-group">
-                                            <button class="btn btn-success rem-Product col-sm-12 col-md-2" @onclick="(() => CartService.DecreaseProductQuantity(cartProduct.ProductId,1,1))"><b>-</b></button>
-                                            <input type="text" readonly class="text-center form-control col-sm-12" value="@cart.Quantity in a Cart" />
-                                            <button class="btn btn-success add-Product col-sm-12 col-md-2" @onclick="(() => CartService.IncreaseProductQuantity(cartProduct.ProductId,1,1))"><b>+</b></button>
+                                            <button class="btn btn-success rem-Product col-sm-12 col-md-2" @onclick="(() => CartService.DecreaseProductQuantity(product.Id))"><b>-</b></button>
+                                            <input type="text" readonly class="text-center form-control col-sm-12" value="@group.Quantity in a Cart" />
+                                            <button class="btn btn-success add-Product col-sm-12 col-md-2" @onclick="(() => CartService.IncreaseProductQuantity(product.Id))"><b>+</b></button>
                                         </div>
                                     </td>
 
                                     @{
-                                        total = total + (cartProduct.Price * cart.Quantity);
-                                        numberOfItems = numberOfItems + cart.Quantity;
+                                        total = total + (product.Price * group.Quantity);
+                                        numberOfItems = numberOfItems + group.Quantity;
                                     }
                                 </tr>
                             </tbody>
@@ -83,7 +83,7 @@
             @{
                 string check = "0";
             }
-            @if (CartService.CustomerProducts.Count() > 0)
+            @if (CartService.Cart.ProductGroups.Count() > 0)
             {
                 <a href="/Thankyou/@check" class="btn btn-lg btn-outline-success float-right">Check Out</a>
             }

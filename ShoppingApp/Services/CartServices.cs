@@ -8,44 +8,47 @@ namespace ShoppingApp.Services
 {
     public class CartServices
     {
-        public List<Cart> Carts = new List<Cart>();
-        public List<CustomerProduct> CustomerProducts = new List<CustomerProduct>();
+        public Cart Cart = new Cart();
 
-        public void CreateCart(int productId, int customerId, int quantity)
+        public void CreateCartAndAddItemsToCart(int productId, int customerId, int quantity)
         {
-            CustomerProduct customerProducts = new CustomerProduct()
+            if (Cart.ProductGroups == null)
             {
-                CustomerProductId = CustomerProducts.Count() + 1,
-                CustumerId = customerId,
+                CreateCart(customerId);
+            }
+            var customerProducts = new ProductGroup()
+            {
+                Id = Cart.ProductGroups.Count() + 1,
                 ProductId = productId,
                 Quantity = quantity
 
             };
 
-            CustomerProducts.Add(customerProducts);
+            Cart.ProductGroups.Add(customerProducts);
         }
-        public void IncreaseProductQuantity(int productId, int customerId, int quatity)
+
+        private void CreateCart(int customerId)
         {
-            CustomerProducts.FirstOrDefault(c => c.ProductId == productId).Quantity = CustomerProducts.FirstOrDefault(c => c.ProductId == productId).Quantity + 1;
+            Cart = new Cart();
+            Cart.CustomerId = customerId;
+            Cart.ProductGroups = new List<ProductGroup>();
         }
-        public void DecreaseProductQuantity(int productId, int customerId, int quatity)
+
+        public void IncreaseProductQuantity(int productId)
         {
-            if (CustomerProducts.FirstOrDefault(c => c.ProductId == productId).Quantity - 1 == 0)
+            Cart.ProductGroups.FirstOrDefault(c => c.ProductId == productId).Quantity = Cart.ProductGroups.FirstOrDefault(c => c.ProductId == productId).Quantity + 1;
+        }
+
+        public void DecreaseProductQuantity(int productId)
+        {
+            if (Cart.ProductGroups.FirstOrDefault(c => c.ProductId == productId).Quantity - 1 == 0)
             {
-                CustomerProducts.Remove(CustomerProducts.FirstOrDefault(c => c.ProductId == productId));
+                Cart.ProductGroups.Remove(Cart.ProductGroups.FirstOrDefault(c => c.ProductId == productId));
             }
             else
             {
-                CustomerProducts.FirstOrDefault(c => c.ProductId == productId).Quantity = CustomerProducts.FirstOrDefault(c => c.ProductId == productId).Quantity - 1;
+                Cart.ProductGroups.FirstOrDefault(c => c.ProductId == productId).Quantity = Cart.ProductGroups.FirstOrDefault(c => c.ProductId == productId).Quantity - 1;
             }
-        }
-        public List<Cart> GetCarts()
-        {
-            return Carts;
-        }
-        public void RemoveCart(int cartId)
-        {
-            Carts.Remove(Carts.FirstOrDefault(Cart => Cart.CartId == cartId));
         }
     }
 }
